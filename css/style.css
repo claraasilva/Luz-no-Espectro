@@ -1,77 +1,360 @@
+/* ---------------- Reset ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #f7f5ed;
+  color: #222;
+  line-height: 1.8;
+}
+
+/* Fonte global */
+/* Fonte global para todo o corpo */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #222;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; /* força negrito em todos */
+  color: #33595d;
+}
+
+
+p, li, a {
+  font-family: 'DM Sans', sans-serif; /* tudo em DM Sans */
+}
+
+
+
+/* ---------------- Cabeçalho ---------------- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #4A90E2;
-    color: white;
+  background: #a0b89e;
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-nav a:hover {
-    text-decoration: underline;
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-#logo {
-    height: 50px;
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: 0.3s;
 }
 
-main {
-    padding: 30px;
+header nav ul li a:hover {
+  text-decoration: underline;
 }
 
-footer {
-    background-color: #4A90E2;
-    color: white;
-    text-align: center;
-    padding: 20px;
+header nav ul li a.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-/* Carrossel da página inicial */
+/* ---------------- Carrossel ---------------- */
+.banner {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
 .carousel {
-    position: relative;
-    max-width: 800px;
-    margin: 40px auto;
-    overflow: hidden;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .carousel img {
-    width: 100%;
-    display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
 }
 
-.carousel img.active {
-    display: block;
+.carousel img.ativo {
+  display: block;
 }
 
-.carousel-buttons {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+/* ---------------- Seção Início ---------------- */
+.inicio .texto-centro {
+  text-align: center;
+  margin: 60px auto 40px auto;
+  max-width: 900px;
+  padding: 0 20px;
 }
 
-.carousel-buttons button {
-    background-color: rgba(0,0,0,0.5);
-    border: none;
-    color: white;
-    padding: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 50%;
+.inicio .texto-centro h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.inicio .texto-centro p {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #444;
+}
+
+/* ---------------- Texto em colunas ---------------- */
+.texto-colunas {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.texto-colunas .colunas {
+  column-count: 2;
+  column-gap: 60px;
+  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.9;
+}
+
+@media (max-width: 768px) {
+  .texto-colunas .colunas {
+    column-count: 1;
+  }
+}
+
+/* ---------------- Rodapé ---------------- */
+main {
+  flex: 1; /* empurra o rodapé pro final */
+}
+
+footer {
+  background: #a0b89e;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ----------------------- */
+/* SEÇÃO O QUE É */
+/* ----------------------- */
+
+/* Container imagem + texto */
+.oque-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.oque-imagem {
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+.oque-imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.oque-texto {
+  flex: 1 1 45%;
+  min-width: 280px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.oque-texto h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.texto-justificado {
+  text-align: justify;
+}
+
+/* Texto centralizado */
+.oque-centro {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ----------------------- */
+/* Galeria estilo colagem */
+/* ----------------------- */
+.oque-galeria {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.oque-galeria .galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.oque-galeria img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Tamanhos diferentes para efeito de colagem */
+
+/* Efeito colagem com posições irregulares */
+.oque-galeria img:nth-child(2) {
+  grid-row: span 2; /* ocupa mais altura */
+}
+
+.oque-galeria img:nth-child(4) {
+  grid-column: span 2; /* ocupa mais largura */
+}
+
+.oque-galeria img:nth-child(6) {
+  grid-row: span 2;
+}
+
+.oque-galeria img:nth-child(7) {
+  grid-column: span 2;
+}
+
+.oque-galeria img:nth-child(5) {
+  grid-column: span 2; /* ocupa mais largura */
+}
+
+
+/* ----------------------- */
+/* SEÇÃO GRAUS */
+/* ----------------------- */
+
+.graus {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* ----------------------- */
+/* Topo (Grau 1 e Grau 3 lado a lado) */
+/* ----------------------- */
+.graus-topo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.grau {
+  flex: 1 1 45%;
+  min-width: 280px;
+  background: #f7f5ed;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.grau h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #33595d; /* corrigido */
+}
+
+.grau p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: #333;
+}
+
+.grau .seta {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 150px;
+  height: auto;
+}
+
+/* ----------------------- */
+/* Banner central */
+/* ----------------------- */
+.graus-banner {
+  width: 100vw;        /* ocupa toda a largura da tela */
+  margin: 0;           /* remove margens laterais */
+}
+
+.graus-banner img {
+  width: 100%;         
+  height: 400px;       /* altura fixa (ajuste 400–500px) */
+  object-fit: cover;   
+  display: block;      /* remove espaço extra da img */
+  border-radius: 0;    
+}
+
+/* ----------------------- */
+/* Grau 2 abaixo do banner */
+/* ----------------------- */
+.graus-baixo {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.graus-baixo .grau {
+  max-width: 700px;
+}
+
+/* ----------------------- */
+/* Responsividade */
+/* ----------------------- */
+@media (max-width: 900px) {
+  .graus-topo {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .graus-banner img {
+    height: 250px; /* max-height por height para consistência */
+  }
+}
+
+@media (max-width: 600px) {
+  .grau h2 {
+    font-size: 1.3rem;
+  }
+
+  .grau p {
+    font-size: 0.95rem;
+  }
+
+  .grau .seta {
+    width: 35px;
+  }
 }

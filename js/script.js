@@ -1,27 +1,10 @@
-const carousel = document.querySelector('.carousel');
-if (carousel) {
-    const imgs = carousel.querySelectorAll('img');
-    const prev = carousel.querySelector('#prev');
-    const next = carousel.querySelector('#next');
-    let index = 0;
+let index = 0;
+const imagens = document.querySelectorAll(".carousel img");
 
-    function showImage(i) {
-        imgs.forEach(img => img.classList.remove('active'));
-        imgs[i].classList.add('active');
-    }
-
-    prev.addEventListener('click', () => {
-        index = (index === 0) ? imgs.length - 1 : index - 1;
-        showImage(index);
-    });
-
-    next.addEventListener('click', () => {
-        index = (index === imgs.length - 1) ? 0 : index + 1;
-        showImage(index);
-    });
-
-    setInterval(() => {
-        index = (index === imgs.length - 1) ? 0 : index + 1;
-        showImage(index);
-    }, 5000);
+function trocarImagem() {
+  imagens[index].classList.remove("ativo");
+  index = (index + 1) % imagens.length;
+  imagens[index].classList.add("ativo");
 }
+
+setInterval(trocarImagem, 4000); // troca a cada 4 segundos
