@@ -33,6 +33,19 @@ p, li, a {
   font-family: 'DM Sans', sans-serif; /* tudo em DM Sans */
 }
 
+/* Garante Garamond Itálico para TODOS os parágrafos da seção Depoimentos */
+.depoimentos p {
+  font-family: 'EB Garamond', serif !important;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;   /* mesmo tamanho do parágrafo de cima */
+  line-height: 1.9;    /* mesmo espaçamento do parágrafo de cima */
+  color: #333;
+}
+
+/* (Opcional) se quiser deixar só as colunas com esse padrão,
+   troque o seletor acima por .depoimentos-colunas .coluna p */
+
 
 /* ---------------- Cabeçalho ---------------- */
 header {
@@ -74,7 +87,7 @@ header nav ul li a.active {
 /* ---------------- Carrossel ---------------- */
 .banner {
   width: 100%;
-  height: 400px;
+  height: auto;         /* altura automática */
   overflow: hidden;
 }
 
@@ -84,10 +97,22 @@ header nav ul li a.active {
   position: relative;
 }
 
+.carousel {
+  width: 100%;
+  height: auto;           /* altura automática, respeita a proporção da imagem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f7f1;    /* cor de fundo igual ao site */
+  overflow: hidden;
+  margin-top: 0;          /* gruda no topo */
+  padding-top: 0;         /* remove espaçamento */
+}
+
 .carousel img {
-  width: 1920px;
-  height: 600px;
-  object-fit: cover;
+  width: 100%;
+  height: auto;           /* mantém proporção original */
+  object-fit: contain;    /* não corta nada da imagem */
   display: none;
 }
 
@@ -97,146 +122,157 @@ header nav ul li a.active {
 
 
 /* ---------------- Seção Início ---------------- */
-.inicio {
-  font-family: 'DM Sans', sans-serif;
-  color: #222;
-  padding-bottom: 60px;
-}
-
-/* ---------- Título central ---------- */
-.inicio-intro {
+.inicio .texto-centro {
   text-align: center;
   margin: 60px auto 40px auto;
   max-width: 900px;
   padding: 0 20px;
 }
 
-.inicio-intro h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
+
+.inicio .texto-centro h1 {
+  font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 15px;
 }
 
-.inicio-intro .subtitulo {
+
+/* Apenas os textos da seção Início */
+.inicio .texto-centro p,
+.inicio .texto-colunas p,
+.inicio .texto-lateral p {
+  font-family: 'DM Sans', sans-serif;
   font-size: 1.2rem;
-  font-style: italic;
+  font-style: normal;  /* deixe normal; mude para italic se quiser */
   color: #444;
 }
 
-/* ---------- Texto em colunas ---------- */
-.inicio-colunas {
+
+
+/* ---------------- Texto em colunas ---------------- */
+.texto-colunas {
   max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
+}
+
+
+.texto-colunas .colunas {
   column-count: 2;
   column-gap: 60px;
   text-align: justify;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.9;
 }
 
+/* Centralizar só os títulos da seção "texto-colunas" */
+.texto-colunas h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+
+.inicio-extra .linha-centro {
+  display: flex;
+  align-items: center; /* <-- centraliza verticalmente */
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.inicio-extra .texto-lateral {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza título + texto verticalmente */
+}
+
+
+
 @media (max-width: 768px) {
-  .inicio-colunas {
+  .texto-colunas .colunas {
     column-count: 1;
   }
 }
 
-/* ---------------- Rodapé ---------------- */
-footer {
-  background-color: #a0b89e; /* fundo verde */
-  color: #fff;              /* texto branco */
-  text-align: center;       /* centraliza o texto */
-  padding: 20px 0;          /* espaço interno */
-  margin-top: auto;         /* garante que vá pro fim */
-}
-
-footer p {
-  margin: 0;                /* remove margens extras */
-  font-size: 1.0rem;        /* tamanho discreto */
-}
-
-/* ------- Menino no centro + textos curtos bem próximos ------- */
-.inicio-menino{
-  display:grid;
-  /* colunas estreitas de texto + imagem ao centro */
-  grid-template-columns: minmax(220px,320px) auto minmax(220px,320px);
-  align-items:center;
-  justify-content:center;
-  gap:24px;                 /* aproxima os textos do menino */
-  max-width:1100px;
-  margin:40px auto 20px;
-  padding:0 20px;
-}
-
-.inicio-menino .imagem-menino img{
-  width:600px;              /* ajuste fino do tamanho do menino */
-  height:auto;
-  display:block;
-  margin:0 auto;
-}
-
-.inicio-menino .texto{
-  font-size:0.95rem;        /* texto mais “pequeno e compacto” */
-  line-height:1.55;
-  text-align:center;
-  color:#243437;
-}
-
-/* opcional: deixa as colunas de texto um pouco mais “estreitas” visualmente */
-.inicio-menino .texto p{
-  margin:0;
-}
-
-/* responsivo: empilha no mobile */
-@media (max-width: 720px){
-  .inicio-menino{
-    grid-template-columns: 1fr;
-    gap:18px;
-  }
-  .inicio-menino .imagem-menino img{
-    width:220px;
-  }
-  .inicio-menino .texto{
-    text-align:justify;     /* pode trocar pra left se preferir */
-  }
-}
-
-/* ---------- Parte inferior: banner + texto ---------- */
-.inicio-inferior {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* banner | texto */
-  gap: 40px;
-  max-width: 1100px;
+/* ---------------- Extra abaixo das colunas ---------------- */
+.inicio-extra {
+  max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* espaço entre as linhas */
+}
+
+.inicio-extra .linha-centro {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: nowrap; /* impede quebra estranha */
 }
 
-.inicio-inferior .banner-quadrado img {
-  width: 100%;
-  max-width: 320px;
+.inicio-extra .imagem-centro {
+  flex: 0 0 500px; /* fixa a largura da imagem no centro */
+  text-align: center;
+}
+
+.inicio-extra .imagem-centro img {
+  max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  display: inline-block;
 }
 
-.inicio-inferior .texto {
+.inicio-extra .texto-lateral {
+  flex: 1;
+  max-width: 400px;
   font-size: 1.05rem;
   line-height: 1.8;
-  text-align: justify;
+  text-align: center;
+}
+
+
+
+
+/* Linha especial: imagem + texto (ex: lâmpada) */
+.inicio-extra .linha-centro.sozinha {
+  justify-content: flex-start;
+  gap: 60px;
+}
+
+.inicio-extra .linha-centro.sozinha .imagem-centro {
+  flex: 0 0 200px;
 }
 
 @media (max-width: 768px) {
-  .inicio-inferior {
-    grid-template-columns: 1fr;
+  .inicio-extra .linha-centro {
+    flex-direction: column;
     text-align: center;
   }
 
-  .inicio-inferior .banner-quadrado img {
-    margin: 0 auto;
+  .inicio-extra .texto-lateral {
+    max-width: 100%;
+    text-align: justify;
+  }
+
+  .inicio-extra .linha-centro.sozinha {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
+/* ---------------- Rodapé ---------------- */
+main {
+  flex: 1; /* empurra o rodapé pro final */
+}
+
+
+footer {
+  background: #a0b89e;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
 
 
 /* ----------------------- */
@@ -316,28 +352,42 @@ footer p {
 }
 
 /* Tamanhos diferentes para efeito de colagem */
-
-/* Efeito colagem com posições irregulares */
 .oque-galeria img:nth-child(2) {
-  grid-row: span 2; /* ocupa mais altura */
-}
-
-.oque-galeria img:nth-child(4) {
-  grid-column: span 2; /* ocupa mais largura */
-}
-
-.oque-galeria img:nth-child(6) {
   grid-row: span 2;
 }
 
-.oque-galeria img:nth-child(7) {
+.oque-galeria img:nth-child(4) {
   grid-column: span 2;
 }
 
-.oque-galeria img:nth-child(5) {
-  grid-column: span 2; /* ocupa mais largura */
+/* ------------------------------
+   Estilo da seção "Conheça mais"
+--------------------------------*/
+.oque-conheca {
+  text-align: center;
+  padding: 40px 20px;
 }
 
+.oque-conheca h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2f4f4f;
+}
+
+.oque-lista {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none; /* remove as bolinhas padrão */
+}
+
+.oque-lista li {
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
 
 /* ----------------------- */
 /* SEÇÃO GRAUS */
@@ -446,4 +496,252 @@ footer p {
   .grau .seta {
     width: 35px;
   }
+}
+
+/* ================================
+   Depoimentos
+================================ */
+.depoimentos {
+  background-color: #f8f6f1;
+  padding: 60px 20px; /* espaçamento interno igual ao das outras seções */
+}
+.depoimentos h5 {
+  font-family: 'EB Garamond', serif !important;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.depoimentos h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #2f4f4f;
+}
+
+/* Grid principal (parte de cima) */
+.depoimentos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  align-items: start;
+  padding-bottom: 120px; /* espaço para não colar na faixa sobreposta */
+}
+
+/* Texto padrão */
+.depoimento.texto {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  text-align: justify;
+  color: #333;
+}
+
+/* Imagens padrão */
+.depoimento.imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+}
+
+/* ================================
+   Ajustes específicos do layout (parte de cima)
+================================ */
+
+/* Texto inicial (esquerda, linha 1) */
+.depoimento.texto.topo {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center; /* centraliza verticalmente */
+  padding-top: 20px; /* leve ajuste */
+}
+
+/* Imagem alta à direita */
+.depoimento.imagem.torta {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  z-index: 1;
+}
+
+/* Faixa sobreposta */
+.depoimento.imagem.wide {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  z-index: 2;
+  transform: translateY(60px);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.depoimento.imagem.wide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ================================
+   Bloco de baixo (imagem + texto separado da grid principal)
+================================ */
+.depoimentos-baixo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* imagem à esquerda, texto à direita */
+  gap: 60px;
+  align-items: center;              /* centraliza texto verticalmente */
+  max-width: 1100px;
+  margin: 0 auto;                   /* centraliza no viewport */
+}
+
+/* Imagem do bloco de baixo */
+.depoimentos-baixo .imagem img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Texto do bloco de baixo */
+.depoimentos-baixo .texto {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #333;
+  text-align: justify;
+}
+
+/* ================================
+   Nova seção: duas colunas de texto
+================================ */
+.depoimentos-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 40px auto 80px auto; /* espaçamento embaixo respeitando o rodapé */
+}
+
+.depoimentos-colunas .coluna p {
+  font-family: 'EB Garamond', serif;
+  font-style: italic !important;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: #333;
+}
+.depoimentos-colunas .coluna h5 {
+  font-family: 'EB Garamond', serif !important;
+  font-style: italic;
+  font-weight: bold; /* deixa em negrito */
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+/* Força Garamond Itálico + Negrito nos nomes das mães em Depoimentos */
+.depoimentos .coluna h5,
+.depoimentos .texto h5,
+.depoimentos h5.legenda {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700; /* negrito de verdade */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+.depoimentos-colunas .coluna .autor {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700; /* negrito */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 10px;
+}
+
+
+
+/* ================================
+   Responsividade
+================================ */
+@media (max-width: 768px) {
+  .depoimentos-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    padding-bottom: 60px;
+  }
+
+  .depoimento.imagem.torta {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .depoimento.imagem.wide {
+    transform: none;
+    grid-column: 1;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .depoimento.imagem.wide img {
+    height: auto;
+  }
+
+  .depoimentos-baixo {
+    grid-template-columns: 1fr;  /* empilha: imagem em cima, texto embaixo */
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .depoimentos h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .depoimento.texto,
+  .depoimentos-baixo .texto,
+  .depoimentos-colunas .coluna p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+}
+
+/* ===============================
+   Fixar tipografia Navbar e Rodapé
+=============================== */
+
+/* Navbar */
+header,
+header * {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: inherit;
+}
+
+/* Rodapé */
+footer,
+footer * {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff; /* mantém branco */
 }
